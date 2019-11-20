@@ -6,7 +6,9 @@ import Switcher from "./switch";
 class App extends Component {
   state = {
     sounds: [],
-    volume: 10
+    volume: 100,
+    name: "",
+    toggle: false
   };
 
   keys = React.createRef();
@@ -28,11 +30,11 @@ class App extends Component {
 
     if (code) {
       this.keys.current.childNodes[code.id].childNodes[1].volume =
-        this.state.volume / 10;
+        this.state.volume / 100;
       this.keys.current.childNodes[code.id].childNodes[1].currentTime = 0;
       this.keys.current.childNodes[code.id].childNodes[1].play();
       code.playing = !code.playing;
-      this.setState({ sounds });
+      this.setState({ sounds, name: code.name });
       this.keys.current.childNodes[code.id].addEventListener(
         "transitionend",
         e => {
@@ -44,29 +46,40 @@ class App extends Component {
     }
   };
 
+  handleToggle = () => {
+    const toggle = !this.state.toggle;
+    this.setState({ toggle, name: "" });
+  };
+
   render() {
     return (
       <div className="keys" ref={this.keys}>
         {this.state.sounds.map(sound => (
           <div key={sound.id}>
-            <kbd
-              onClick={() => this.handlePlay(sound.key, sound.src)}
+            <button
+              disabled={this.state.toggle}
+              onClick={() => this.handlePlay(sound.key)}
               className={sound.playing ? "key playing" : "key"}
             >
               {sound.kbd}
-            </kbd>
+            </button>
             <audio key={sound.key} src={sound.src}></audio>
           </div>
         ))}
         <input
+          className="slider"
           type="range"
           name="points"
           min="0"
-          max="10"
+          max="100"
           onChange={this.handleVolumeChange}
           value={this.state.volume}
         ></input>
-        <Switcher></Switcher>
+        <Switcher
+          onToggle={this.handleToggle}
+          toggle={this.state.toggle}
+        ></Switcher>
+        <div className="key title">{this.state.name}</div>
       </div>
     );
   }

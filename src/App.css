@@ -1,6 +1,7 @@
 html {
   font-size: 10px;
-  background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+  /* background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center; */
+  background: url(https://i.imgur.com/VGfgx.jpeg) bottom center;
   background-size: cover;
 }
 
@@ -18,7 +19,7 @@ html {
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  width: 500px;
+  width: 400px;
   flex-wrap: wrap;
 }
 
@@ -35,25 +36,25 @@ html {
   background: rgba(0, 0, 0, 0.4);
   text-shadow: 0 0 0.5rem black;
   display: inline-block;
+  outline: none;
+}
+
+.title {
+  width: 12rem;
 }
 
 .playing {
   transform: scale(1.1);
-  border-color: #ffc600;
-  box-shadow: 0 0 1rem #ffc600;
+  border-color: #ff00c8;
+  box-shadow: 0 0 1rem #ff00c8;
   /* background-color: #ffc600; */
-}
-
-kbd {
-  display: block;
-  font-size: 4rem;
 }
 
 .sound {
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  color: #ffc600;
+  color: #ff00c8;
 }
 
 .switcher-off {
@@ -110,4 +111,32 @@ kbd {
   transition: 0.2s all;
   position: absolute;
   box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 2px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  height: 5px;
+  background: #d3d3d3;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 50px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  background: #ff00c8;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  background: #ff00c8;
+  cursor: pointer;
 }

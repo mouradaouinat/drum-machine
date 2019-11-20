@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getSounds } from "./data";
 import "./App.css";
+import Switcher from "./switch";
 
 class App extends Component {
   state = {
@@ -65,6 +66,7 @@ class App extends Component {
           onChange={this.handleVolumeChange}
           value={this.state.volume}
         ></input>
+        <Switcher></Switcher>
       </div>
     );
   }
